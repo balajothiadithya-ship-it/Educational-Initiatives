@@ -20,6 +20,7 @@ public class SchedulerManager implements SchedulerSystem {
 
     @Override
     public void registerAstronaut(Astronaut astronaut) {
+
         astronauts.add(astronaut);
     }
 
