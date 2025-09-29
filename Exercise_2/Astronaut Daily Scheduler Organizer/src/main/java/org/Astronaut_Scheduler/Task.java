@@ -46,6 +46,6 @@ public class Task {
         this.priority = priority;
     }
     public String toString(){
-        return "Task:"+this.desc+" startTime:"+this.startTime+" endTime:"+this.endTime+" priority:"+this.priority;
+        return this.desc+" startTime:"+this.startTime+" endTime:"+this.endTime+" priority:"+this.priority;
     }
 }
