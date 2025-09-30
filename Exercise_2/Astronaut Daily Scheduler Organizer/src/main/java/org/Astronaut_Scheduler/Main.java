@@ -12,13 +12,17 @@ public class Main {
         System.out.println("REMOVE task <Description>");
         System.out.println("VIEW tasks");
         System.out.println("EXIT");
-        while(true){
+        boolean running = true;
+        while(running){
             System.out.print("> ");
             String input = sc.nextLine().trim();
             if(input.equalsIgnoreCase("exit")){
-                break;
+                running = false;
             }
-            system.executeCommand(input);
+            else {
+                String result = system.executeCommand(input);
+                System.out.println(result);
+            }
 
         }
         sc.close();
