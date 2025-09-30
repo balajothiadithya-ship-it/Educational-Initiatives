@@ -1,28 +1,90 @@
 package org.Astronaut_Scheduler;
 
-public class AstronautSchedulerSystem {
-public void executeCommand(String input){
-    String[] parts = input.split("\\s+");
-    String command = parts[0];
-    switch(command){
-        case "ADD":
-            String desc = parts[1];
-            String startTime = parts[2];
-            String endTime = parts[3];
-            String priority = parts[4];
-            Task newTask = TaskFactory.createTask(desc, startTime, endTime, priority);
-            SchedulerManager.getInstance().addTask(newTask);
-            break;
-        case "REMOVE":
-            SchedulerManager.getInstance().deleteTask(parts[1]);
-            break;
-        case "VIEW":
-            SchedulerManager.getInstance().viewTask();
-            break;
+import org.Astronaut_Scheduler.exceptions.InvalidTaskException;
+import org.Astronaut_Scheduler.exceptions.TaskException;
 
-        default:
-            System.out.println("unknown command");
+import java.lang.reflect.Array;
+import java.time.DateTimeException;
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.logging.Logger;
+public class AstronautSchedulerSystem implements Observer
+{
+    private static final Logger logger = Logger.getLogger(AstronautSchedulerSystem.class.getName());
+    AstronautSchedulerSystem(){
+        SchedulerManager.getInstance().addObserver(this);
+    }
+ public Task parseAndCreateTask(String desc, String startTime, String endTime, String priority){
+     try {
+
+         LocalTime start = LocalTime.parse(startTime);
+         LocalTime end = LocalTime.parse(endTime);
+         if (end.isBefore(start)) {
+             throw new InvalidTaskException("Task Creation failed:End Time cannot be before start time");
+         }
+         return TaskFactory.createTask(desc, start, end, priority);
+     }
+     catch(DateTimeException exception){
+         throw new InvalidTaskException("Task creation failed:"+"format should be in HH:mm and within 00:00 and 24:00");
+     }
+
+ }
+public String executeCommand(String input){
+    String[] parts = input.split("\\s+");
+    String command = parts[0].toUpperCase();
+        try{
+        switch (command) {
+            case "ADD":
+                if(parts.length < 5) {
+                    throw new InvalidTaskException("Wrong add command:Check input format once again");
+                }
+                String startTime = parts[parts.length-3];
+                String endTime = parts[parts.length-2];
+                String priority = parts[parts.length-1];
+                if(!priority.equalsIgnoreCase("High") && !priority.equalsIgnoreCase("Low") && !priority.equalsIgnoreCase("Medium")){
+                    throw new InvalidTaskException("Task creation failed:Invalid priority");
+                }
+                String desc =String.join(" ", Arrays.copyOfRange(parts, 1, parts.length - 3));
+                if(!desc.matches("[a-zA-z ]+")){
+                    throw new InvalidTaskException("Task Creation failed:Description is invalid");
+                }
+
+                Task newTask = parseAndCreateTask(desc, startTime, endTime, priority);
+                String result = SchedulerManager.getInstance().addTask(newTask);
+                logger.info(result);
+                return result;
+            case "REMOVE":
+                if(parts.length < 2){
+                    throw new InvalidTaskException("Invalid Delete command,check your input");
+                }
+                String msg = SchedulerManager.getInstance().deleteTask(String.join(" ", Arrays.copyOfRange(parts, 1, parts.length)));
+                logger.info(msg);
+                return msg;
+
+            case "VIEW":
+
+                return SchedulerManager.getInstance().viewTask();
+
+
+            default:
+                throw new InvalidTaskException("Unknown command");
+
+        }
+    }
+    catch(TaskException exception){
+        logger.severe(exception.getMessage());
+        return exception.getMessage();
     }
 
+}
+public String updateOnTask(TaskStatus status, Task... tasks){
+    String msg = "";
+    switch(status){
+
+        case ADDED -> msg = "Task successfully added";
+        case REMOVED -> msg = "Task successfully removed";
+        case CONFLICT -> msg = "New Task "+tasks[0].getDesc()+" conflicts with "+tasks[1].getDesc();
+    }
+    return msg;
 }
 }

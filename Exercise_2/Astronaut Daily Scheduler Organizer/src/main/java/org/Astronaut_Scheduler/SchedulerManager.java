@@ -1,17 +1,21 @@
 package org.Astronaut_Scheduler;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import org.Astronaut_Scheduler.exceptions.TaskConflictException;
+import org.Astronaut_Scheduler.exceptions.TaskExistException;
+import org.Astronaut_Scheduler.exceptions.TaskNotFound;
+
+import java.util.*;
+
 //Singleton and System class
 public class SchedulerManager implements SchedulerSystem {
     private static SchedulerManager instance;
-    private final List<Task> tasks;
-    private final List<Astronaut> astronauts;
+    private final Set<Task> tasks;
+    private final List<Observer> observers;
 
     private SchedulerManager() {
-        tasks = new ArrayList<>();
-        astronauts = new ArrayList<>();
+        tasks = new TreeSet<>();
+        observers = new ArrayList<>();
+
     }
 
     public static SchedulerManager getInstance() {
@@ -22,60 +26,69 @@ public class SchedulerManager implements SchedulerSystem {
     }
 
     @Override
-    public void registerAstronaut(Astronaut astronaut) {
+    public void addObserver(Observer observer) {
 
-        astronauts.add(astronaut);
+        observers.add(observer);
     }
 
     @Override
-    public void notifyAllAstronauts(TaskStatus status, Task task) {
-        for (Astronaut astronaut : astronauts) {
+    public String notifyAllObservers(TaskStatus status, Task... tasks) {
+        StringBuilder builder = new StringBuilder("");
+        for (Observer observer : observers) {
 
-            astronaut.updateOnTask(status, task);
+            builder.append(observer.updateOnTask(status, tasks));
         }
-
+        return builder.toString();
     }
 
     private boolean isConflict(Task newTask, Task existingTask) {
         return newTask.getStartTime().isBefore(existingTask.getEndTime()) && newTask.getEndTime().isAfter(existingTask.getStartTime());
     }
 
-    public void addTask(Task newTask) {
+    public String addTask(Task newTask) {
+        for(Task existingTask:tasks){
+            if(existingTask.getDesc().equalsIgnoreCase(newTask.getDesc())){
+                throw new TaskExistException("task already exists");
+            }
+        }
         for (Task existingTask : tasks) {
             if (isConflict(newTask, existingTask)) {
-                System.out.println("The new Task conflicts with existing task " + existingTask.getDesc());
-                return;
+                String msg = notifyAllObservers(TaskStatus.CONFLICT, newTask, existingTask);
+                throw new TaskConflictException(msg);
             }
         }
+
         tasks.add(newTask);
-        System.out.println("Task added successfully");
-        notifyAllAstronauts(TaskStatus.ADDED, newTask);
+        String msg = "";
+        msg = notifyAllObservers(TaskStatus.ADDED, newTask);
+        return msg;
 
     }
-    public void viewTask(){
+    public String viewTask(){
         if(tasks.isEmpty()){
-            System.out.println("No Tasks scheduled for the day");
+            return "No Tasks scheduled for the day";
         }
         else {
+            StringBuilder result = new StringBuilder("Scheduled Tasks:\n");
             for (Task task : tasks) {
-                System.out.println(task);
+                result.append(task).append("\n");
             }
+            return result.toString();
         }
     }
-    public void deleteTask(String desc) {
-        var iterator = tasks.iterator();
-        while(iterator.hasNext()) {
-            Task task = iterator.next();
+    public String deleteTask(String desc) {
+        Iterator<Task> it = tasks.iterator();
+        String msg = "";
+        while(it.hasNext()) {
+            Task task = it.next();
             if(task.getDesc().equalsIgnoreCase(desc)) {
-                iterator.remove();
-                System.out.println("Task removed Successfully");
-                notifyAllAstronauts(TaskStatus.REMOVED, task);
-                return;
+                it.remove();
+
+                msg = notifyAllObservers(TaskStatus.REMOVED, task);
+
+                return msg;
             }
         }
-            System.out.println("Task not found");
-
-
-
+            throw new TaskNotFound("Task not found");
     }
 }

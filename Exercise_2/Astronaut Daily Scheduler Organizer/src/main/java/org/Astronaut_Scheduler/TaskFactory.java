@@ -1,13 +1,11 @@
 package org.Astronaut_Scheduler;
 //Factory class
 
+import java.time.DateTimeException;
 import java.time.LocalTime;
 
 public class TaskFactory {
-    public static Task createTask(String desc, String startTime, String endTime, String priority){
-        LocalTime start = LocalTime.parse(startTime);
-        LocalTime end = LocalTime.parse(endTime);
-        return new Task(desc, start, end, priority);
-
+    public static Task createTask(String desc, LocalTime startTime, LocalTime endTime, String priority) {
+        return new Task(desc, startTime, endTime, priority);
     }
 }
