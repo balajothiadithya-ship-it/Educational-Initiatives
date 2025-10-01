@@ -36,7 +36,7 @@
 
 **Interface:**
 
-**>SchedukerSystem**
+**>SchedulerSystem**
 
 **>Observer**
 
