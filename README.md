@@ -100,6 +100,24 @@
 
 <img width="986" height="402" alt="image" src="https://github.com/user-attachments/assets/2a43be7f-db97-4524-b0e7-70ff834b04f9" />
 
+### Removal of a Non Existing task
+
+<img width="1027" height="268" alt="image" src="https://github.com/user-attachments/assets/f7fdad24-82ba-415c-b788-fe07794043a8" />
+
+### Invalid Time input
+
+<img width="960" height="128" alt="image" src="https://github.com/user-attachments/assets/c21018a7-8f32-4c71-a0f3-ace918f7cc6a" />
+
+### Invalid Input Cases
+
+<img width="972" height="132" alt="image" src="https://github.com/user-attachments/assets/0df1668f-79e6-44fa-b098-4b97e9f13611" />
+
+<img width="980" height="140" alt="image" src="https://github.com/user-attachments/assets/d70a56cc-0f80-4028-a5ec-6fb70c6c0eed" />
+
+### Unknown Command
+
+<img width="1087" height="122" alt="image" src="https://github.com/user-attachments/assets/d165736c-9476-4146-944a-296292f803cb" />
+
 ### Exit the Application
 
 <img width="618" height="127" alt="image" src="https://github.com/user-attachments/assets/4c6768cf-d8e7-497c-afe6-e6eb59b58a55" />
