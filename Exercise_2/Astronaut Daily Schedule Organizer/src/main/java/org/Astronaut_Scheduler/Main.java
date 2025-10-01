@@ -9,6 +9,7 @@ public class Main {
         System.out.println("Available Commands:");
         System.out.println("ADD <Task Description, startTime(HH:mm), endTime(HH:mm), priority>");
         System.out.println("VIEW tasks");
+        System.out.println("VIEW tasks <priority>");
         System.out.println("Edit <Task Description> | <newDescription, startTime, endTime, priority>");
         System.out.println("Remove <Task Description>");
         System.out.println("EXIT");
