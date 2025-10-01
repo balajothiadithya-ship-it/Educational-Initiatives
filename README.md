@@ -2,21 +2,21 @@
 
   #### Two use cases to demonstrate two behavioural design pattern.
 
-  **Observer (Youtube channel and Subscriber)**
+  **>Observer (Youtube channel and Subscriber)**
   
-  **Strategy (Sorting of students based on Name,Age and marks)**
+  **>Strategy (Sorting of students based on Name,Age and marks)**
   
   #### Two use cases to demonstrate two creational design pattern.
 
-  **Factory (Creation of Pdf and word document objects)**
+  **>Factory (Creation of Pdf and word document objects)**
   
-  **Singleton (Database connection)**
+  **>Singleton (Database connection)**
   
   #### Two use cases to demonstrate two structural design pattern.
   
-  **Adaptor (Payment processor)**
+  **>Adaptor (Payment processor)**
   
-  **Composite (Computer and its components)**
+  **>Composite (Computer and its components)**
 
   ## EXERCISE 2: 1) Astronaut Daily Schedule Organizer
 
@@ -24,53 +24,57 @@
 
 **Classes:**
 
-**AstronautScheduleSystem(Observer)**
+**>AstronautScheduleSystem(Observer)**
 
-**Task**
+**>Task**
 
-**TaskFactory(Factory)**
+**>TaskFactory(Factory)**
 
-**ScheduleManager(Singleton + System)**
+**>ScheduleManager(Singleton + System)**
 
-**Main**
+**>Main**
 
 **Interface:**
 
-**SchedukerSystem**
+**>SchedukerSystem**
 
-**Observer**
+**>Observer**
+
+**Enum:**
+
+**>TaskStatus**
 
 **Exception classes:**
 
-**TaskException**
+**>TaskException**
 
-**InvalidTaskException**
+**>InvalidTaskException**
 
-**TaskConflictException**
+**>TaskConflictException**
 
-**TaskNotFoundException**
+**>TaskNotFoundException**
 
-**TaskExistException**
+**>TaskExistException**
 
 **Pattern Used: Singleton pattern,Factory pattern ,Observer pattern**
 
 ## Features
 
-**Add new Task**
+**>Add new Task**
 
-**View task**
+**>View task**
 
-**Remove task**
+**>Remove task**
 
-**Check overlapping conflicts while adding new task**
+**>Check overlapping conflicts while adding new task**
 
-**Sort tasks by startTime**
+**>Sort tasks by startTime**
 
 ## Additional Features
 
-**Edit task**
+**>Edit task**
 
-**View task by Priority**
+**>View task by Priority**
 
 ### Adding a New Task
 
