@@ -40,6 +40,18 @@
 
 **Observer**
 
+**Exception classes:**
+
+**TaskException**
+
+**InvalidTaskException**
+
+**TaskConflictException**
+
+**TaskNotFoundException**
+
+**TaskExistException**
+
 **Pattern Used: Singleton pattern,Factory pattern ,Observer pattern**
 
 ## Features
