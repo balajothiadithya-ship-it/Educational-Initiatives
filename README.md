@@ -60,5 +60,36 @@
 
 **View task by Priority**
 
-### Adding a new task
-<img width="1122" height="431" alt="image" src="https://github.com/user-attachments/assets/4478aede-9849-42ce-8ac8-caaa7377a10d" />
+### Adding a New Task
+
+<img width="926" height="383" alt="image" src="https://github.com/user-attachments/assets/a141576d-79c3-432e-a777-f43bebba27ef" />
+
+### View Scheduled Tasks
+
+<img width="918" height="256" alt="image" src="https://github.com/user-attachments/assets/88db15f7-9538-488a-9a93-572209210cbe" />
+
+### Remove a Task
+
+<img width="981" height="145" alt="image" src="https://github.com/user-attachments/assets/a2581eb5-71c4-4d0a-96b7-f4e52eb9a2f8" />
+
+### Detect Conflict while adding a New Task
+
+<img width="1000" height="142" alt="image" src="https://github.com/user-attachments/assets/f93e4948-11b6-4326-bbfd-d04f55222a19" />
+
+### Edit a Task
+
+<img width="960" height="212" alt="image" src="https://github.com/user-attachments/assets/4cc44518-dc3d-4162-9d79-8a7e14818372" />
+
+### View Task by specified priority
+
+<img width="986" height="402" alt="image" src="https://github.com/user-attachments/assets/2a43be7f-db97-4524-b0e7-70ff834b04f9" />
+
+### Exit the Application
+
+<img width="618" height="127" alt="image" src="https://github.com/user-attachments/assets/4c6768cf-d8e7-497c-afe6-e6eb59b58a55" />
+
+
+
+
+
+
