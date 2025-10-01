@@ -1,5 +1,5 @@
 package org.Astronaut_Scheduler;
 
 public enum TaskStatus {
-    ADDED,REMOVED,CONFLICT
+    ADDED,REMOVED,CONFLICT,EDITED
 }

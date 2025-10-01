@@ -20,33 +20,25 @@ public class Task implements Comparable<Task>{
         return desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+
 
     public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
+
 
     public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
+
 
     public String getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
-        this.priority = priority;
-    }
+
     public int compareTo(Task other){
         int cmp = this.startTime.compareTo(other.startTime);
         if(cmp != 0){

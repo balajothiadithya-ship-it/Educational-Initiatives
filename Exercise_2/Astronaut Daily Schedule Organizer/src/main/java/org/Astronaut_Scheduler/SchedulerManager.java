@@ -52,6 +52,7 @@ public class SchedulerManager implements SchedulerSystem {
             }
         }
         for (Task existingTask : tasks) {
+
             if (isConflict(newTask, existingTask)) {
                 String msg = notifyAllObservers(TaskStatus.CONFLICT, newTask, existingTask);
                 throw new TaskConflictException(msg);
@@ -75,6 +76,53 @@ public class SchedulerManager implements SchedulerSystem {
             }
             return result.toString();
         }
+    }
+    public String viewTaskByPriority(String priority){
+        if(tasks.isEmpty()){
+            return "No tasks scheduled for the day";
+        }
+        boolean flag = false;
+        StringBuilder result = new StringBuilder("Tasks with "+priority+" are:\n");
+        for(Task task:tasks){
+            if(task.getPriority().equalsIgnoreCase(priority)){
+                flag = true;
+                result.append(task).append("\n");
+            }
+        }
+        if(flag){
+            return result.toString();
+        }
+        else{
+            return "No task found under "+priority+" priority";
+        }
+    }
+    public String editTask(Task newTask,String desc){
+        Task taskToBeEdited = null;
+        for(Task oldTask:tasks) {
+            if (desc.equalsIgnoreCase(oldTask.getDesc())) {
+                taskToBeEdited = oldTask;
+                break;
+            }
+        }
+        if(taskToBeEdited == null) {
+            throw new TaskNotFound("Task Not Found");
+        }
+        for(Task task:tasks) {
+            if (task.getDesc().equalsIgnoreCase(taskToBeEdited.getDesc())) {
+                continue;
+            } else {
+                if(isConflict(newTask, task)){
+                    String msg = notifyAllObservers(TaskStatus.CONFLICT, newTask, task);
+                    throw new TaskConflictException(msg);
+                }
+            }
+        }
+                tasks.remove(taskToBeEdited);
+                tasks.add(newTask);
+                String msg = notifyAllObservers(TaskStatus.EDITED,taskToBeEdited);
+                return msg;
+
+
     }
     public String deleteTask(String desc) {
         Iterator<Task> it = tasks.iterator();

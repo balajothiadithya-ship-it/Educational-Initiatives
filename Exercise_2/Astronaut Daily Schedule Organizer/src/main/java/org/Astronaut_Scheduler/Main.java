@@ -7,9 +7,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Astronaut Daily Schedule Organizer");
         System.out.println("Available Commands:");
-        System.out.println("ADD task <Description, startTime(HH:mm), endTime(HH:mm), priority>");
-        System.out.println("REMOVE task <Description>");
+        System.out.println("ADD <Task Description, startTime(HH:mm), endTime(HH:mm), priority>");
         System.out.println("VIEW tasks");
+        System.out.println("Edit <Task Description> | <newDescription, startTime, endTime, priority>");
+        System.out.println("Remove <Task Description>");
         System.out.println("EXIT");
         boolean running = true;
         while(running){
