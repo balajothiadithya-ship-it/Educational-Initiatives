@@ -62,6 +62,6 @@ public class Task implements Comparable<Task>{
         return Objects.hash(desc, startTime, endTime);
     }
     public String toString(){
-        return this.desc+" startTime:"+this.startTime+" endTime:"+this.endTime+" priority:"+this.priority;
+        return this.startTime+"-"+this.endTime+": "+this.getDesc()+"["+this.getPriority()+"]";
     }
 }
