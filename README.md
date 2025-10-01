@@ -59,3 +59,6 @@
 **Edit task**
 
 **View task by Priority**
+
+### Adding a new task
+<img width="1122" height="431" alt="image" src="https://github.com/user-attachments/assets/4478aede-9849-42ce-8ac8-caaa7377a10d" />
