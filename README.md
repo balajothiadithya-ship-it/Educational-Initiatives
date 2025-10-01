@@ -20,7 +20,7 @@
 
   ## EXERCISE 2: 1) Astronaut Daily Schedule Organizer
 
-**The Astronaut Daily Scheduler is a application that helps astronauts plan and manage their daily activities. It ensures tasks do not overlap in time and allows viewing, adding, removing, editing, and filtering tasks by priority.**
+**The Astronaut Daily Scheduler is an application that helps astronauts plan and manage their daily activities. It ensures tasks do not overlap in time and allows viewing, adding, removing, editing, and filtering tasks by priority.**
 
 **Classes:**
 
