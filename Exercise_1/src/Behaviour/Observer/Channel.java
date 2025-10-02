@@ -18,20 +18,20 @@ public class Channel implements System {
         return this.videoTitle;
     }
     @Override
-    public void addSubscriber(Subscriber sub){
+    public void addUser(Subscriber sub){
         subs.add(sub);
     }
     @Override
-    public void removeSubscriber(Subscriber sub){
+    public void removeUser(Subscriber sub){
         subs.remove(sub);
     }
-    @Override
+
     public void uploadVideo(String title){
         this.setVideoTitle(title);
-        notifySubscribers();
+        notifyUsers();
     }
     @Override
-    public void notifySubscribers(){
+    public void notifyUsers(){
         for(Subscriber s:subs){
             s.update(this);
         }

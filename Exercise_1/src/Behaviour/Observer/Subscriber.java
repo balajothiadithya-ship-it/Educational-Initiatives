@@ -9,14 +9,14 @@ public class Subscriber implements  Observer{
         this.name = name;
     }
     @Override
-    public void subscribe(Channel ch){
+    public void register(Channel ch){
 
-        ch.addSubscriber(this);
+        ch.addUser(this);
     }
     @Override
-    public void unSubscribe(Channel ch){
+    public void unRegister(Channel ch){
 
-        ch.removeSubscriber(this);
+        ch.removeUser(this);
     }
     @Override
     public void update(Channel ch){
